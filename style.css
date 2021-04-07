@@ -4,8 +4,21 @@
   box-sizing: border-box;
   font-family: sans-serif;
 }
+:root {
+  --gradient: linear-gradient(45deg, #037ade, #03e5b7);
+}
+@keyframes animate {
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
+}
 body {
-  background-color: #333;
+  background-image: var(--gradient);
+  background-size: 500%;
+  animation: animate 8s infinite alternate;
 }
 h1 {
   color: #fff;
@@ -15,10 +28,11 @@ h1 {
 .main-wrapper {
   max-width: 25%;
   min-height: 60%;
-  background-color: #fff;
+  background-color: rgba(232, 236, 241, 0.8);
   margin: 0 auto;
   padding: 30px;
   border-radius: 20px;
+  border: solid 2px black;
 }
 /* grid number wrapper */
 .grid-container {
@@ -101,6 +115,7 @@ h1 {
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 10px;
+  background-color: #fff;
 }
 /* two inputs wrappered inside result */
 .preview,
@@ -113,6 +128,7 @@ h1 {
 .operator {
   border: solid 2px black;
   margin-bottom: 2px;
+  background-color: rgba(243, 241, 239, 1);
 }
 .equals {
   font-size: 50px;
@@ -120,11 +136,15 @@ h1 {
 }
 /* pseudo classes */
 .btn:hover {
-  border: solid 3px black;
+  border: solid 3px #fff;
+  color: #fff;
+  font-size: 3em;
 }
 .operator:hover {
   color: #fff;
+  font-size: 3em;
+  color: black;
 }
 .number:hover {
-  background-color: red;
+  color: #fff;
 }
