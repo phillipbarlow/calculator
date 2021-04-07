@@ -1,9 +1,130 @@
-body {
-  background-color: black;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
 }
-.calculator-wrapper {
-  max-width: 900px;
-  margin: 0 auto;
+body {
+  background-color: #333;
+}
+h1 {
+  color: #fff;
+  text-align: center;
+}
+/* main wrapper */
+.main-wrapper {
+  max-width: 25%;
+  min-height: 60%;
   background-color: #fff;
-  min-height: 200px;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 20px;
+}
+/* grid number wrapper */
+.grid-container {
+  width: 100%;
+  height: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "seven eight nine plus"
+    "four five six minus"
+    "one two three divide"
+    "clear zero decimal times"
+    "equals equals equals equals";
+}
+.seven {
+  grid-area: seven;
+}
+.eight {
+  grid-area: eight;
+}
+.nine {
+  grid-area: nine;
+}
+.four {
+  grid-area: four;
+}
+.five {
+  grid-area: five;
+}
+.six {
+  grid-area: six;
+}
+.one {
+  grid-area: one;
+}
+.two {
+  grid-area: two;
+}
+.three {
+  grid-area: three;
+}
+.zero {
+  grid-area: zero;
+}
+.clear {
+  grid-area: clear;
+}
+.decimal {
+  grid-area: decimal;
+}
+.plus {
+  grid-area: plus;
+}
+.minus {
+  grid-area: minus;
+}
+.divide {
+  grid-area: divide;
+}
+.times {
+  grid-area: times;
+}
+.equals {
+  grid-area: equals;
+}
+/* flex box container to center text */
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+}
+/* result wrapper */
+.result {
+  width: 100%;
+  margin: 0 auto;
+  border: solid 3px black;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+/* two inputs wrappered inside result */
+.preview,
+.maths {
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  border: none;
+}
+.operator {
+  border: solid 2px black;
+  margin-bottom: 2px;
+}
+.equals {
+  font-size: 50px;
+  color: black;
+}
+/* pseudo classes */
+.btn:hover {
+  border: solid 3px black;
+}
+.operator:hover {
+  color: #fff;
+}
+.number:hover {
+  background-color: red;
 }

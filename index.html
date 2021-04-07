@@ -3,36 +3,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
     <title>Calculator</title>
 </head>
 <body>
     <h1>Calculator</h1>
-    <section class="calculator-wrapper">
+    <section class="main-wrapper">
+        <div class="result">
         <input class="preview" />
         <input class="maths" />
+        </div>
+        <div class="grid-container">
+            <div class="seven number btn">7</div>
+            <div class="eight number btn">8</div>
+            <div class="nine number btn">9</div>
+            <div class="four number btn">4</div>
+            <div class="five number btn">5</div>
+            <div class="six number btn">6</div>
+            <div class="one number btn">1</div>
+            <div class="two number btn">2</div>
+            <div class="three number btn">3</div>
+            <div class="zero number btn">0</div>
 
-        <button class="number">0</button>
-        <button class="number">1</button>
-        <button class="number">2</button>
-        <button class="number">3</button>
-        <button class="number">4</button>
-        <button class="number">5</button>
-        <button class="number">6</button>
-        <button class="number">7</button>
-        <button class="number">8</button>
-        <button class="number">9</button>
+            <div class="clear perform btn">C</div>
+            <div class="decimal perform btn">.</div>
 
-        <button class="operator">+</button>
-        <button class="operator">-</button>
-        <button class="operator">/</button>
-        <button class="operator">*</button>
-        
-        <button class="clear">C</button>
-
-        <button class="decimal">.</button>
-
-        <button class="equals">=</button>
+            <div class="plus operator btn btn-warning">+</div>
+            <div class="minus operator btn btn-warning">-</div>
+            <div class="divide operator btn btn-warning">/</div>
+            <div class="times operator btn btn-warning">*</div>
+            <div class="equals operator btn btn-success">=</div>
+          </div>
     </section>
     <script src="./script.js"></script>
 </body>
