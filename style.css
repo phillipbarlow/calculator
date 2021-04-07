@@ -144,6 +144,12 @@ h1 {
   color: #fff;
   font-size: 3em;
   color: black;
+  background-color: rgba(232, 232, 232, 1);
+}
+.equals:hover {
+  /* background-color: rgba(218, 223, 225, 1); */
+  background-color: rgba(103, 128, 159, 1);
+  color: #fff;
 }
 .number:hover {
   color: #fff;
