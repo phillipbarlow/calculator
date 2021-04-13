@@ -160,3 +160,7 @@ h1 {
 .number:hover {
   color: #fff;
 }
+.error {
+  color: red;
+  text-align: center;
+}

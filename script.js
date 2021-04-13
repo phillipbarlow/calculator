@@ -11,18 +11,24 @@ let objMaths = document.querySelector(".maths")
 let objPreview = document.querySelector(".preview");
     // console.log(objPreview)
 let objprevious = document.querySelector(".previous");
-console.log(objprevious)
+// console.log(objprevious)
 let objClear = document.querySelector(".clear");
 // console.log(objClear)
 let arrOperators = document.querySelectorAll(".operator");
 
 let objEquals = document.querySelector(".equals");
 
+let objError = document.querySelector(".error");
+// console.log(objError)
+let objDecimal = document.querySelector(".decimal");
+
 objClear.addEventListener("click", clear);
 //grabs clear button with clear call back
 
 objEquals.addEventListener("click", equals);
 //grabs equal button with equals call back
+objDecimal.addEventListener("click", preview);
+console.log(objDecimal)
 /*----- EventListener -----*/
 //number loop which adds objNumber.addEventListener("click", preview) with each iteration
 for(let i =0; i < arrNumbers.length; i++){
@@ -74,7 +80,7 @@ function preview(event){
             operator = currentItem;
             strMessage = number1 + ' ' + currentItem;
         } else {
-            console.log('You cannot set an operator without a number being set');
+            objError.innerHTML = 'You cannot set an operator without a number being set';
         }
         //if dataType equals number;
     }else{
@@ -84,21 +90,39 @@ function preview(event){
             blnEquals = false;
         }
         if(operator){
-            //if number2 has value pass then append currentItem to number2
             if(number2){
-                number2 += currentItem;
+                if(currentItem == '.'){
+                    if(!hasDecimal(number1)){
+                        number2 += currentItem;
+                    }
+                } else {
+                    number2 += currentItem;
+                }
             } else {
-                number2 = currentItem;
+                if(currentItem == '.'){
+                    number2 = '0.';
+                } else {
+                    number2 = currentItem;
+                }
             }
             strMessage = number1 + ' ' + operator + ' ' + number2;
-            let sum = calculator(number1, number2, operator);
-            objMaths.value = sum
+            var sum = calculator(number1,number2,operator);
+            objMaths.value = sum;
         } else {
-            //if number1 has value append currentItem to number1
             if(number1){
-                number1 += currentItem;
+                if(currentItem == '.'){
+                    if(!hasDecimal(number1)){
+                        number1 += currentItem;
+                    }
+                } else {
+                    number1 += currentItem;
+                }
             } else {
-                number1 = currentItem;
+                if(currentItem == '.'){
+                    number1 = '0.';
+                } else {
+                    number1 = currentItem;
+                }
             }
             strMessage = number1;
         }
@@ -113,20 +137,29 @@ function clear(event){
     operator ="";
     objPreview.value="";
     objMaths.value ="";
+    objprevious.value="";
+    objError.innerHTML ="";
 }
 //equals buttons callback, with the validation callback stored in sum
 function equals(){
     let sum = calculator(number1, number2, operator);
-    //appends value of sum to objMaths to show result;
-    objMaths.value ="";
-    objprevious.value = objPreview.value;
-    objMaths.value= sum;
-    blnEquals = true;
-    number1 = sum;
-    number2 = '';
-    operator = '';
+    if(sum){
+        //appends value of sum to objMaths to show result;
+        objMaths.value ="";
+        objprevious.value = objPreview.value;
+        objMaths.value= sum;
+        blnEquals = true;
+        number1 = sum;
+        number2 = '';
+        operator = '';
+    }
 }
-
+function hasDecimal(number){
+    if(number.indexOf('.') !== -1){
+        objError.innerHTML = 'You can only have one decimal place per number';
+        return true;
+    }
+}
 //Adding a validation function for the numbers
 function isValidNumber(number){
     //We are using a double negative as inNaN returns false on valid numbers
@@ -136,18 +169,22 @@ function calculator(number1,number2,operator){
     //if number1 is not a number
     if(!isValidNumber(number1)){
         //end the function here and pass the message below.
-        return 'Argument 1 must be a number';
+        objError.innerHTML = 'Number 1 must be a number';
+        return;
+    }
+       // if the operator does not equal + - * / %
+       if(operator != '+' && operator != '-' && operator != '*' && operator != '/' && operator != '%'){
+        //end the function here and pass the message below.
+        objError.innerHTML = 'must be an arithmatic operator';
+        return;
     }
     //if number 2 is not a number
     if(!isValidNumber(number2)){
         //end the function here and pass the message below.
-        return 'Argument 2 must be a number';
+        objError.innerHTML = 'Number 2 must be a number';
+        return
     }
-    // if the operator does not equal + - * / %
-    if(operator != '+' && operator != '-' && operator != '*' && operator != '/' && operator != '%'){
-        //end the function here and pass the message below.
-        return 'Argument 3 must be an arithmatic operator';
-    }
+ 
     //all fo the validation has passed so we need to do maths
     var sum;
     //based on the operator passed in argument 3 we will do a different sum
