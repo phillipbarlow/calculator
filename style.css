@@ -119,7 +119,8 @@ h1 {
 }
 /* two inputs wrappered inside result */
 .preview,
-.maths {
+.maths,
+.previous {
   width: 100%;
   margin: 0 auto;
   margin-bottom: 5px;

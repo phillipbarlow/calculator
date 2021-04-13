@@ -10,6 +10,8 @@ let objMaths = document.querySelector(".maths")
 
 let objPreview = document.querySelector(".preview");
     // console.log(objPreview)
+let objprevious = document.querySelector(".previous");
+console.log(objprevious)
 let objClear = document.querySelector(".clear");
 // console.log(objClear)
 let arrOperators = document.querySelectorAll(".operator");
@@ -61,6 +63,12 @@ function preview(event){
         if(blnEquals){
             blnEquals = false;
         }
+        if(number2){
+            number1 = calculator(number1, number2, operator);
+            number2 = "";
+            objprevious.value = objPreview.value;
+            objMaths.value ="";
+        }
         //true when number1 has value
         if(number1){
             operator = currentItem;
@@ -110,6 +118,8 @@ function clear(event){
 function equals(){
     let sum = calculator(number1, number2, operator);
     //appends value of sum to objMaths to show result;
+    objMaths.value ="";
+    objprevious.value = objPreview.value;
     objMaths.value= sum;
     blnEquals = true;
     number1 = sum;
