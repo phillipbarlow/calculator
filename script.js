@@ -1,30 +1,10 @@
-// const numbers = document.querySelectorAll('.number');
-// const operators = document.querySelectorAll('.operator');
-// const perform = document.querySelectorAll('.perform');
-
-// numbers.forEach(x=>{
-//     x.addEventListener('click', (event)=>{
-//         // example = event.target.innerHTML;
-//         console.log(event.target.innerHTML);
-//     })
-// })
-// operators.forEach(x=>{
-//     x.addEventListener('click', (event)=>{
-//         // example = event.target.innerHTML;
-//         console.log(event.target.innerHTML);
-//     })
-// })
-// perform.forEach(x=>{
-//     x.addEventListener('click', (event)=>{
-//         // example = event.target.innerHTML;
-//         console.log(event.target.innerHTML);
-//     })
-// })
 
 /*----- Variables -----*/
+//undefined variables
 let number1 ="";
 let number2 = "";
 let operator="";
+
 /*----- selecting elements -----*/
 let arrNumbers = document.querySelectorAll(".number");
 // console.log(arrNumbers)
@@ -37,26 +17,33 @@ let objClear = document.querySelector(".clear");
 let arrOperators = document.querySelectorAll(".operator");
 
 let objEquals = document.querySelector(".equals");
+
+objClear.addEventListener("click", clear);
+//grabs clear button with clear call back
+
+objEquals.addEventListener("click", equals);
+//grabs equal button with equals call back
 /*----- EventListener -----*/
-//number loop
+//number loop which adds objNumber.addEventListener("click", preview) with each iteration
 for(let i =0; i < arrNumbers.length; i++){
     // console.log(arrNumbers[i])
     objNumber = arrNumbers[i];
     objNumber.addEventListener("click", preview)
 }
-//operator loop
+//operator loop which adds objOperator.addEventListener("click", preview) with each iteration
 for(let i =0; i < arrOperators.length; i++){
     // console.log(arrOperators[i])
     objOperator = arrOperators[i];
     objOperator.addEventListener("click", preview)
 }
-objClear.addEventListener("click", clear);
-objEquals.addEventListener("click", equals);
-/*----- Functions -----*/
+
+/*----- callback Functions -----*/
+//preview call back invoked by objNumber + objOperator;
 function preview(event){
-    // console.log(event.target.innerHTML)
+    // currentItem = the button txt
     currentItem = event.target.innerHTML;
     // console.log(currentItem)
+    // datatype either equals 'operator or 'number'
     let dataType;
     switch(currentItem){
         case '*':
@@ -69,16 +56,21 @@ function preview(event){
             dataType = 'number'
         break;
     }
-    console.log(dataType)
+    // console.log(dataType)
+    //if dataType equals 'operator
     if(dataType == 'operator'){
+        //true when number1 has value
         if(number1){
             operator = currentItem;
             strMessage = number1 + ' ' + currentItem;
         } else {
             console.log('You cannot set an operator without a number being set');
         }
-    } else {
+        //if dataType equals number;
+    }else{
+        //true when operator has value
         if(operator){
+            //if number2 has value pass then append currentItem to number2
             if(number2){
                 number2 += currentItem;
             } else {
@@ -86,6 +78,7 @@ function preview(event){
             }
             strMessage = number1 + ' ' + operator + ' ' + number2;
         } else {
+            //if number1 has value append currentItem to number1
             if(number1){
                 number1 += currentItem;
             } else {
@@ -94,8 +87,10 @@ function preview(event){
             strMessage = number1;
         }
     }
+    //gives value of strMessage to objPreview
     objPreview.value = strMessage;
 }
+//onces clear is pressed resets all values 
 function clear(event){
     number1="";
     number2 ="";
@@ -103,9 +98,10 @@ function clear(event){
     objPreview.value="";
     objMaths.value ="";
 }
-
+//equals buttons callback, with the validation callback stored in sum
 function equals(){
     let sum = calculator(number1, number2, operator);
+    //appends value of sum to objMaths to show result;
     objMaths.value= sum;
 }
 
