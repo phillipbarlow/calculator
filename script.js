@@ -1,9 +1,7 @@
 
 /*----- Variables -----*/
 //undefined variables
-let number1 ="";
-let number2 = "";
-let operator="";
+let number1 = "", number2 = "", operator = "", blnEquals = false;
 
 /*----- selecting elements -----*/
 let arrNumbers = document.querySelectorAll(".number");
@@ -40,6 +38,7 @@ for(let i =0; i < arrOperators.length; i++){
 /*----- callback Functions -----*/
 //preview call back invoked by objNumber + objOperator;
 function preview(event){
+    console.log(blnEquals);
     // currentItem = the button txt
     currentItem = event.target.innerHTML;
     // console.log(currentItem)
@@ -59,6 +58,9 @@ function preview(event){
     // console.log(dataType)
     //if dataType equals 'operator
     if(dataType == 'operator'){
+        if(blnEquals){
+            blnEquals = false;
+        }
         //true when number1 has value
         if(number1){
             operator = currentItem;
@@ -69,6 +71,10 @@ function preview(event){
         //if dataType equals number;
     }else{
         //true when operator has value
+        if(blnEquals){
+            number1 = '';
+            blnEquals = false;
+        }
         if(operator){
             //if number2 has value pass then append currentItem to number2
             if(number2){
@@ -77,6 +83,8 @@ function preview(event){
                 number2 = currentItem;
             }
             strMessage = number1 + ' ' + operator + ' ' + number2;
+            let sum = calculator(number1, number2, operator);
+            objMaths.value = sum
         } else {
             //if number1 has value append currentItem to number1
             if(number1){
@@ -103,6 +111,10 @@ function equals(){
     let sum = calculator(number1, number2, operator);
     //appends value of sum to objMaths to show result;
     objMaths.value= sum;
+    blnEquals = true;
+    number1 = sum;
+    number2 = '';
+    operator = '';
 }
 
 //Adding a validation function for the numbers
